@@ -1,1 +1,1 @@
-web: gunicorn norah-gallery.wsgi
+web: gunicorn gallery.wsgi
