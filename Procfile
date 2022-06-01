@@ -1,1 +1,1 @@
-web: gunicorn norah-gallery:app --preload
+web: gunicorn norah-gallery.wsgi
