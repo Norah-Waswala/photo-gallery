@@ -1,0 +1,117 @@
+{%extends 'base.html'%}
+
+{% block content %}
+{{block.super}}
+
+
+<div class="container">
+
+  <!-- Looping through images   -->
+
+
+  <div class="row">
+   {% for image in images %}
+    <!-- displaying images  -->
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+     <div class="col-md-6">
+       <div class="card">
+         <h4 class="card-title">{{image.Image_Name}}</h4>
+         
+         <div class="view overlay">
+           <img class="card-img-top" src="" alt="{{article.title}}">
+         </div>
+         <div class="card-body">
+           
+           <img src="{{image.Image.url}}" alt="{{image.Image_Name}}"  class="img-responsive" alt="Image">
+           <a class="btn btn-pink" href="{{article.urlToImage}}">View</a>
+         </div>
+     
+       </div>
+     
+  </div>
+  </div>
+  {% endblock %}
+  <div class="modal fade " id="{{image.id}}" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered" role="document">
+     <div class="modal-content modalcard">
+         <div class="modal-header">
+             <h5 class="modal-title d-block mx-auto" id="exampleModalLongTitle">{{image.name}}</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+             </button>
+         </div>
+        
+         <div class="modal-body">
+             <img src="{{image.Image.url}}" alt="{{image.Image_Name}}" class="img-fluid">
+             <p>{{image.Image_Description}}</p>
+             <span class="btn btn-sm btn-outline-success">{{image.category | title}}</span> <a href="/location/{{image.location}}" class="btn btn-sm btn-outline-info">{{image.location}}</a>
+         </div>
+         <button id="myInput" class="btn btn-success btn-sm" onclick="copyLink('{{image.id}}.url')">Copy</button>
+         <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">Close
+         </button>
+     </div>
+ </div>
+</div>
+<div id="this" class="container">
+  <div class="row">
+    {% for image in images %}
+
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-6">
+      <div class="col-md-12">
+        <div class="card1">
+          <div class="card-title">
+            <a href="#" data-bs-target="#imagemodal{{ Image.id }}" data-bs-toggle="modal" id="img">
+              <img id="imgsmall" src="{{image.Image.url}}" style="width: 300px; height: 250px;">
+            </a>
+            <!-- <img src="{{image.Image.url}}" alt="{{image.Image_Name}}"  class="img-responsive" alt="Image">   -->
+          </div>
+          <div class="card-body">
+            <div class="one">
+              <p>Category: <span>{{image.category}}</span> </p> *
+              <p>Name: <span>{{image.Image_Name}}</span> </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+   </div>
+   {% endfor %}
+  </div>
+  <!-- Image modal -->
+  <div class="modal fade" id="imagemodal{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span><span
+              class="sr-only">Close</span></button>
+          <h4 class="modal-title" id="myModalLabel">{{image.Image_Name}}</h4>
+        </div>
+        <div class="modal-body">
+          <img src="{{image.Image.url}}" style="width: 450px; height: 380px;">
+          <p>Description: {{image.description}}</p>
+          <p>Location: {{image.location}}</p>
+          <p>Category: {{image.category}}</p>
+        </div>
+        <div class="modal-footer">
+          <p>Posted on {{image.date_posted}} by {{image.photographer}}</p>
+          <button onClick="Link(this.id)" id="{{image.image.url}}">Copy Image Link</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $("#img").on("click", function () {
+      $('#imgmodal').attr('src', $('#imgsmall').attr('src'));
+      $('#imagemodal').modal('show');
+    });
+
+    function Link(url) {
+      navigator.clipboard.writeText(url);
+    }
+  </script>
+  
+</div>
+{% endblock %}
