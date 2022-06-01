@@ -102,6 +102,9 @@
 .container-icon i{
  font-size: 30px;
  color: #99c14f;
+ margin-left: 50px;
+ 
+ 
 }
 .container-icon p{
   color: #483824;
@@ -111,8 +114,74 @@
 .container-icon{
   margin-left: 50px;
   padding-top: 230px;
+  display: inline;
+
+}
+.card .card-body img{
+  height: 80vh;
+  width: 80vh; 
+  
+}
+.card .card-title a{
+  color: #99c14f;
+}
+.card .card-title{
+color: #c17a4f;
+font-size: larger;
+  
+}
+.card1 .card-body .one {
+  display: inline-block;
+  white-space: nowrap;
+  color: #fcf9f6;
+  padding-inline: 10px;
+
+}
+.card1 .card-body .one span{
+  color: #99c14f;
+}
+
+#this {
+  background-color: #2b3f3bb7;
+  padding: 10px;
 
 }
 
-
+#this img{
+    width:  50vh;
+    height: 50vh;
+    object-fit: cover;
+}
+.cate p{
+  display: inline;
+}
+.hero1{
+text-align: center;
+}
+.hero2 i,p{
+  display: inline;
+  align-items: center;
   
+}
+.view button{
+ margin-left: 100px;
+ color: #c25807;
+}
+
+.arrow {
+  border: solid rgb(250, 95, 23);
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+ 
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+.navbar-brand{
+  font-family: 'Bodoni Moda', serif;
+
+}
+
