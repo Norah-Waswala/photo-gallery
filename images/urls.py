@@ -5,8 +5,8 @@ from . import views
 
 urlpatterns=[
     url(r'^$',views.landing,name = 'landing'),
-    url(r'^single/(\d+)',views.single,name ='single'),
-    url(r'^location/',views.image_location,name='location'),
+    url(r'^location/(?P<location>\w+)/', views.image_location, name='location'),
+    
     url(r'^search/', views.search_results, name='search'),
 ]
 if settings.DEBUG:

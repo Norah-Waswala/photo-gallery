@@ -184,4 +184,11 @@ text-align: center;
   font-family: 'Bodoni Moda', serif;
 
 }
-
+#locations a{
+  color: #99c14f;
+  align-items: center;
+  font-size: x-large;
+}
+.all{
+  display: inline;
+}

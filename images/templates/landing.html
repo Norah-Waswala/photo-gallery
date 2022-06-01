@@ -27,53 +27,71 @@
 </div>
 </div>
 <div class="container-icon">
+  <hr>
   <div class="hero1">
     <h2>My Gallery</h2>
     <p>“The best thing about a picture is that it never changes, even when the people in it do.”</p>
   </div>
+<hr>
+    <div class="row">
+  <div class="col-md-4">
   <div class="hero2">
     <i class="fa fa-thumbs-up"><p>like</p></i><br>
     <i class="fa fa-share"><p>share</p></i> <br>
     <i class="fa fa-comment"><p> comment</p></i>
   </div>
 </div>
-</div>
-<div class="row">
-  {% for image in images %}
-  <div class="col-sm-4 col-md-4 col-lg-3 d-flex justify-content-center mb-5">
-  <a href="{% url 'single' %}" data-bs-target="#imagemodal{{ Image.id }}" data-bs-toggle="modal" id="img">
-      <img id="imgsmall" src="{{image.Image.url}}" style="width: 300px; height: 250px;">
-  </a>
-  <!-- Image modal -->
-  <div class="modal fade" id="imagemodal{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-          <h4 class="modal-title" id="myModalLabel">{{image.Image_Name}}</h4>
-        </div>
-        <div class="modal-body">
-          <img src="{{image.Image.url}}" style="width: 450px; height: 380px;" >
-          <p>Description: {{image.description}}</p>
-          <p>Location: {{image.location}}</p>
-          <p>Category: {{image.category}}</p>
-        </div>
-        <div class="modal-footer">
-          <p>Posted on {{image.date_posted}} by {{image.photographer}}</p>
-          <button onClick="Link(this.id)" id="{{image.image.url}}">Copy Image Link</button>
-        </div>
-      </div>
-    </div>
-    </div>
+<div class="col-md-8">
+  <div id="locations">
+    <p>Find by various locations</p>
+    {% for location in locations %}
+        <a class="btn btn-outline-info btn-sm" 
+           href="/location/{{location.name}}">{{location.name}}</a>
+    {%endfor%}
   </div>
-  <script>
-      $("#img").on("click", function() {
-     $('#imgmodal').attr('src', $('#imgsmall').attr('src'));
-     $('#imagemodal').modal('show');
-  });
-  function Link(url){
-    navigator.clipboard.writeText(url);
-  }
-  </script>
-  {% endfor %}
+</div>
+</div>
+</div>
+<hr>
+<div id="this" class="container">
+<div class="card-columns">
+  <div class="col-sm-4 col-md-4 col-lg-3 d-flex justify-content-center mb-5">
+          {% for image in images %}
+          <div class="card" data-toggle="modal" data-target="#{{image.id}}">
+              <img src="{{image.Image.url}}" alt="{{image.Image_Name}}" style="width: 400px; height: 380px;" class="card-img">
+          </div>
+
+
+          <div class="modal fade " id="{{image.id}}" tabindex="-1" role="dialog"
+               aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                  <div class="modal-content modalcard">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="imageheader">{{image.Image_Name}}</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                          <img src="{{image.Image.url}}" alt="{{image.name}}" class="img-fluid">
+                          <p class="imgdesc text-center">{{image.Image_Description}}</p>
+                          <span class="btn btn-sm btn-outline-success">{{image.category}}</span> <a
+                              href="/location/{{image.location}}" class="btn btn-sm btn-outline-info">{{image.location}}</a>
+                      </div>
+                      <div class="modal-footer">
+                          <input class="form-control input-lg" type="text"
+                                 value="{{image.Image.url}}" id="{{image.id}}.url">
+                          <button class="btn btn-success btn-sm" onclick="copyLink('{{image.id}}.url')">Copy</button>
+                          <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">Close
+                          </button>
+                         
+                      </div>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+      </div>
+  </div>
+</div>
+
 {% endblock %}
