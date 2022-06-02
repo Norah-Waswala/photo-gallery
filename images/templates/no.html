@@ -1,45 +1,39 @@
+<!-- Button trigger modal
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Launch demo modal
+  </button> -->
+  {%extends 'base.html'%}
 
-  <div id="this" class="container">
-    <div class="card-columns">
-      <div class="col-sm-4 col-md-4 col-lg-3 d-flex justify-content-center mb-5">
-              {% for image in images %}
-              
-                  <img class="card" data-toggle="modal" data-target="#{{image.id}}" src="{{image.Image.url}}" alt="{{image.Image_Name}}" style="width: 400px; height: 380px;" class="card-img">
-             
-    
-              {% endfor %}
-    
-              {% for image in images %}
-              <div class="modal fade " id="{{image.id}}" tabindex="-1" role="dialog"
-                   aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                      <div class="modal-content modalcard">
-                          <div class="modal-header">
-                              <h5 class="modal-title" id="imageheader">{{image.Image_Name}}</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                              </button>
-                          </div>
-                          <div class="modal-body">
-                              <img src="{{image.Image.url}}" alt="{{image.name}}" class="img-fluid">
-                              <p class="imgdesc text-center">{{image.Image_Description}}</p>
-                              <span class="btn btn-sm btn-outline-success">{{image.category}}</span> <a
-                                  href="/location/{{image.location}}" class="btn btn-sm btn-outline-info">{{image.location}}</a>
-                          </div>
-                          <div class="modal-footer">
-                              <input class="form-control input-lg" type="text"
-                                     value="{{image.Image.url}}" id="{{image.id}}.url">
-                              <button class="btn btn-success btn-sm" onclick="copyLink('{{image.id}}.url')">Copy</button>
-                              <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">Close
-                              </button>
-                             
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              {% endfor %}
-          </div>
+{% block content %}
+{{block.super}}
+  {% for image in images %}
+          
+  <img class="card" data-toggle="modal" data-target="#{{image.id}}" src="{{image.Image.url}}" alt="{{image.Image_Name}}" style="width: 400px; height: 380px;" class="card-img">
+
+
+{% endfor %}
+  
+  <!-- Modal -->
+  {% for image in images %}
+  <div class="modal fade" id="{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">{{image.Image_Name}}</h4>
+        </div>
+        <div class="modal-body">
+            <img src="{{image.Image.url}}" alt="{{image.name}}" class="img-fluid">
+            <p class="imgdesc text-center">{{image.Image_Description}}</p>
+            <span class="btn btn-sm btn-outline-success">{{image.category}}</span> <a
+                href="/location/{{image.location}}" class="btn btn-sm btn-outline-info">{{image.location}}</a>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
       </div>
     </div>
-    
-    {% endblock %}
+  </div>
+  {% endfor %}
+  {% endblock %}
