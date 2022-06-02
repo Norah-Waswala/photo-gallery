@@ -5,9 +5,9 @@ Norah Waswala
  A personalized gallery application that allow user to display photos for others to see.Others can share,kike and comment the image they like.
 ## Demo
 ### Landing Page
-![screen](/app/static/image/screen.png)
+![screen](/static/image/screen.png)
 ### Single Image
-![screen](/app/static/image/screen1.png)
+![screen](/static/image/screen1.png)
 ## User Story
 * View different photos that interest me.
 * Click on a single photo to expand it and also view the details of the photo. The photo details must appear on a modal within the same route as the main page.
