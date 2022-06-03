@@ -14,7 +14,13 @@ Norah Waswala
 * Search for different categories of photos. (ie. Travel, Food)
 * Copy a link to the photo to share with my friends.
 * View photos based on the location they were taken.
-
+## BDD
+| Behaviour | Input | Output |
+| :---------------- | :---------------: | ------------------: |
+| Load the page | **On page load** | Get all pictures, click on an image to view the full image page|
+| Select link button | **Copy Link** | Form that display the URL path and a bitton to copy the path|
+| Click on locations | **Location Links** | Redirect to the specific location selected with all the images|
+|Search| **Search button**| A user can search images by category name|
 ## Requirements
 The application requires the following installations to operate:
 * SQL database
